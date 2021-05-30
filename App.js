@@ -1,56 +1,26 @@
 import React , {useState}from 'react';
-import {StyleSheet , Text ,  View ,TextInput ,Button} from 'react-native';
+import {StyleSheet , Text ,  View ,TextInput ,Button , FlatList } from 'react-native';
+import Header from './components/Header';
+import StartGameScreen from './screens/StartGameScreen';
 
 const App = () => {
-  const [enterGoal, setEnteredGoal] = useState("");
-  const [courseGoals ,setCourseGoals]=useState([]);
 
-  function goalInputHanlder(enteredText){
-    setEnteredGoal(enteredText)
-  }
-  const addGoalHanlder=()=>{
-    setCourseGoals([...courseGoals,enterGoal ]);
-
-  }
   return (
     <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-       
-        <TextInput placeholder='Course Goal' style={{width:"80%"}}  onChangeText={goalInputHanlder}
-        value={enterGoal} />
-
-<Button title='ADD' onPress={addGoalHanlder}/>
-      </View>
-    
-          <View>
-             {courseGoals.map(goal=>(
-               <View key={goal} style={styles.listItem}>
-                 
-                 <Text>{goal}</Text>
-                  </View>
-             ))}
-          </View>
+      <Header title='Guess a Number' />
+      <StartGameScreen/>
       
     </View>
  
   )}
 
+  
+
 const styles=StyleSheet.create({
   screen:{
-    padding:50
+   flex:1,
   },
-  inputContainer:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center'
-  },
-  listItem:{
-    padding:10,
-    backgroundColor:'#ccc',
-    borderColor:'black',
-    borderWidth:1,
-    marginVertical:10,
-  }
+  
 })
 
 export default App
